@@ -1,17 +1,13 @@
-const sections = document.querySelectorAll('.section')
-const sectbtns = document.querySelectorAll('.controls')
-const sectbtn = document.querySelectorAll('.control')
-const allSections = document.querySelectorAll('.main-content')
-
-function pageTransition() {
-    //button clic active class
-    for(let i = 0; i < sectbtn.length; i++) {
-        sectbtn[i].addEventListener('click' , function () {
-            let currentBtn = document.querySelectorAll('.active-btn');
-            currentBtn[0].className = currentBtn[0].className.replace('active-btn' , '')
-            this.className += 'active-btn'
+(function () {
+    [...document.querySelectorAll(".control")].forEach(button => {
+        button.addEventListener("click", function() {
+            document.querySelector(".active-btn").classList.remove("active-btn");
+            this.classList.add("active-btn");
+            document.querySelector(".active").classList.remove("active");
+            document.getElementById(button.dataset.id).classList.add("active");
         })
-    }
-}
-
-pageTransition()
+    });
+    document.querySelector(".theme-btn").addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
+    })
+})();
